@@ -3,7 +3,7 @@ const pageScraper = require("./skfScraper");
 const exportDataToExcel = require("./exportService");
 
 const workSheetColumnNames = [
-  "Brand",
+  "brand",
   "productID",
   "insideDiameter",
   "OutsideDiameter",
@@ -12,7 +12,7 @@ const workSheetColumnNames = [
   "clearance",
 ];
 
-const workSheetName = "Quality";
+const workSheetName = "Task";
 const filePath = "./exel-from.xlsx";
 
 async function scrapeAll(browserInstance) {

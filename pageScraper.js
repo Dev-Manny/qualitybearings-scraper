@@ -24,7 +24,6 @@ const scraperObject = {
         );
         return links;
       });
-    
 
       //Loop through each of those links, open a new page instance and get the relevant data from them
       let pagePromise = (link) =>
@@ -95,7 +94,6 @@ const scraperObject = {
     }
 
     let data = await scrapeCurrentPage();
-    console.log(data);
     return data;
   },
 };

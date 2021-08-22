@@ -17,7 +17,6 @@ const skfScraperObject = {
         );
         return links;
       });
-      // console.log(urls);
 
       //Loop through each of those links, open a new page instance and get the relevant data from them
       let pagePromise = (link) =>
@@ -72,27 +71,34 @@ const skfScraperObject = {
           await newPage.close();
         });
 
-        for (link in urls) {
-          // console.log(urls[link]);
-          if (urls[link] != null) {
-            //  console.log("got in");
-            let currentPageData = await pagePromise(urls[link]);
-            scrapedData.push(currentPageData);
-          }
+      for (link in urls) {
+        // console.log(urls[link]);
+        if (urls[link] != null) {
+          //  console.log("got in");
+          let currentPageData = await pagePromise(urls[link]);
+          scrapedData.push(currentPageData);
         }
+      }
       // When all the data on this page is done, click the next button and start the scrapping
       // Check if button exists
-      console.log("hearing you");
+
       let nextButtonExist = false;
+      let newPageLink;
       try {
-        const nextButton = await page.$eval(".pagination-link", (a) => a.href);
+        const [nextButton] = await page.$x(
+          "/html/body/div[2]/main/section/div[1]/div[4]/nav/a[8]"
+        );
+        const newPage = await nextButton.getProperty("href");
+        newPageLink = await newPage.jsonValue();
         nextButtonExist = true;
       } catch (e) {
         nextButtonExist = false;
       }
 
       if (nextButtonExist) {
-        await page.click(".pagination-link");
+        console.log("moving to next page");
+        console.log(newPageLink);
+        await page.goto(newPageLink);
         return scrapeCurrentPage();
       }
       await page.close();
@@ -100,6 +106,7 @@ const skfScraperObject = {
     }
 
     let data = await scrapeCurrentPage();
+    console.log(data);
     return data;
   },
 };
