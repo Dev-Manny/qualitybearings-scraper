@@ -1,0 +1,16 @@
+{
+  "name": "book-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^10.2.0",
+    "xlsx": "^0.17.1"
+  }
+}
