@@ -85,12 +85,20 @@ const skfScraperObject = {
       let nextButtonExist = false;
       let newPageLink;
       try {
+        console.log('inside doing');
         const [nextButton] = await page.$x(
           "/html/body/div[2]/main/section/div[1]/div[4]/nav/a[8]"
         );
+       
         const newPage = await nextButton.getProperty("href");
         newPageLink = await newPage.jsonValue();
+        console.log(`Next page link is: ${await newPageLink}`);
         nextButtonExist = true;
+        if (await newPageLink === 'https://www.qualitybearingsonline.com/deep-groove/6200-series/?sort=bestselling&page=50'){
+          console.log('End of life');
+          nextButtonExist = false;
+        }
+  
       } catch (e) {
         nextButtonExist = false;
       }
