@@ -1,4 +1,4 @@
-const pageScraper = require("./skfScraper");
+const pageScraper = require("./baldorScraper");
 
 const exportDataToExcel = require("./exportService");
 
@@ -19,7 +19,7 @@ async function scrapeAll(browserInstance) {
   try {
     browser = await browserInstance;
     const scrapedData = await pageScraper.scraper(browser);
-    /// console.log(scrapedData);
+    console.log('ending');
     await browser.close();
     exportDataToExcel(
       scrapedData,
@@ -27,17 +27,6 @@ async function scrapeAll(browserInstance) {
       workSheetName,
       filePath
     );
-    // fs.writeFile(
-    //   "data.json",
-    //   JSON.stringify(scrapedData),
-    //   "utf-8",
-    //   function (err) {
-    //     if (err) {
-    //       return console.log(err);
-    //     }
-    //     console.log("Dtata scraped");
-    //   }
-    // );
   } catch (e) {
     console.log("could not resolve the browser instance =>", e);
   }
