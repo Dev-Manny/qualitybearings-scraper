@@ -2,15 +2,7 @@ const pageScraper = require("./baldorScraper");
 
 const exportDataToExcel = require("./exportService");
 
-const workSheetColumnNames = [
-  "brand",
-  "productID",
-  "insideDiameter",
-  "OutsideDiameter",
-  "width",
-  "cageType",
-  "clearance",
-];
+const workSheetColumnNames = ["productID", "OutsideDiameter"];
 
 const workSheetName = "Task";
 const filePath = "./exel-from.xlsx";
@@ -19,7 +11,6 @@ async function scrapeAll(browserInstance) {
   try {
     browser = await browserInstance;
     const scrapedData = await pageScraper.scraper(browser);
-    console.log('ending');
     await browser.close();
     exportDataToExcel(
       scrapedData,
