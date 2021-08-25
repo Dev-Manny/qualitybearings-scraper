@@ -1469,7 +1469,7 @@ const baldorScraperObject = {
           let dataObj = {};
           newPage = await browser.newPage();
           // console.log(newPage);
-          await newPage.goto(link, { waitUntil: "load", timeout: 20000 });
+          await newPage.goto(link, { waitUntil: "load", timeout: 70000 });
           console.log("inside here");
 
           const [spec] = await newPage.$x(

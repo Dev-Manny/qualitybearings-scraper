@@ -1,5 +1,5 @@
 const skfScraperObject = {
-  url: "https://www.qualitybearingsonline.com/deep-groove/6200-series/",
+  url: "https://www.qualitybearingsonline.com/deep-groove/6200-series/?sort=bestselling&page=6",
   async scraper(browser) {
     let page = await browser.newPage();
     console.log(`Navigating to ${this.url}...`);
