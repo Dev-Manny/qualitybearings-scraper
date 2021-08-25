@@ -1,4 +1,4 @@
-const baldorScraperObject = {
+const factorysupplyoutletScraperObject = {
   async scraper(browser) {
     let scrapedData = [];
     let newPage;
@@ -1468,68 +1468,53 @@ const baldorScraperObject = {
         new Promise(async (resolve, reject) => {
           let dataObj = {};
           newPage = await browser.newPage();
-          // console.log(newPage);
-          await newPage.goto(link, { waitUntil: "load", timeout: 70000 });
+          await newPage.goto(link, { waitUntil: "load", timeout: 30000 });
           console.log("inside here");
-
-          const [spec] = await newPage.$x(
-            '//*[@id="catalog-detail"]/div[2]/div/div/div/nav/ul/li[1]'
+          const [lh] = await newPage.$x(
+            '//*[@id="topOfPage"]/div[6]/div[1]/div/main/div[1]/div[1]/div[5]/article/div[1]/div[1]/ul/a/li[3]/div[1]'
+          );
+          // Check if the right hand side list is Outside Diameter
+          const [rh] = await newPage.$x(
+            '//*[@id="topOfPage"]/div[6]/div[1]/div/main/div[1]/div[1]/div[5]/article/div[1]/div[1]/ul/a/li[2]/div[1]'
           );
 
-          const [type] = await newPage.$x(
-            '//*[@id="catalog-detail"]/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div[1]/span[1]'
-          );
+          if (typeof (await lh) !== "undefined") {
+            const lhType = await lh.getProperty("textContent");
+            const rhType = await rh.getProperty("textContent");
 
-          if (typeof (await spec) !== "undefined") {
-            const chkSpec = await spec.getProperty("textContent");
-
-            if ((await chkSpec.jsonValue()) === "Specs") {
-              if (typeof (await type) !== "undefined") {
-                const chkType = await type.getProperty("textContent");
-                console.log("check type");
-                console.log(await chkType.jsonValue());
-                if ((await chkType.jsonValue()) === "Bushing Length") {
-                  console.log("fantasy");
-                  //Product ID
-                  const [pid] = await newPage.$x(
-                    '//*[@id="content"]/div[3]/section[1]/div[3]/h1'
-                  );
-                  //Outside Diameter
-                  const [od] = await newPage.$x(
-                    '//*[@id="catalog-detail"]/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div[1]/span[2]'
-                  );
-                  if (typeof (await pid) !== "undefined") {
-                    const chkPid = await pid.getProperty("textContent");
-                    const chkOd = await od.getProperty("textContent");
-                    let res = await chkOd.jsonValue();
-                    let outsideDiameter = parseFloat(res.match(/[\d\.]+/))
-                      .toFixed(4)
-                      .toString();
-                    console.log(outsideDiameter);
-
-                    dataObj["productID"] = await chkPid.jsonValue();
-                    dataObj["OutsideDiameter"] = outsideDiameter + '"';
-                    resolve(dataObj);
-                    await newPage.close();
-                  } else {
-                    console.log("pid is undefined");
-                    dataObj["product ID"] = prodId;
-                    resolve(dataObj);
-                    await newPage.close();
-                  }
-                } else {
-                  dataObj["product ID"] = prodId;
-                  resolve(dataObj);
-                  await newPage.close();
-                }
-              }
-            } else {
-              dataObj["product ID"] = prodId;
+            if ((await lhType.jsonValue()) === "Outside Diameter:") {
+              const [lhVal] = await newPage.$x(
+                '//*[@id="topOfPage"]/div[6]/div[1]/div/main/div[1]/div[1]/div[5]/article/div[1]/div[1]/ul/a/li[3]/div[2]'
+              );
+              const lhValType = await lhVal.getProperty("textContent");
+              let odVal = await lhValType.jsonValue();
+              odVal = odVal.split("/")[0].replace(" Inch", '"');
+              dataObj["productID"] = prodId;
+              dataObj["OutsideDiameter"] = odVal;
               resolve(dataObj);
               await newPage.close();
+            } else {
+              // check the right hand side
+              if ((await rhType.jsonValue()) === "Outside Diameter:") {
+                const [rhVal] = await newPage.$x(
+                  '//*[@id="topOfPage"]/div[6]/div[1]/div/main/div[1]/div[1]/div[5]/article/div[1]/div[1]/ul/a/li[2]/div[2]'
+                );
+                const rhValType = await rhVal.getProperty("textContent");
+                let rodVal = await rhValType.jsonValue();
+                rodVal = rodVal.split("/")[0].replace(" Inch", '"');
+                dataObj["productID"] = prodId;
+                dataObj["OutsideDiameter"] = rodVal;
+                resolve(dataObj);
+                await newPage.close();
+              } else {
+                dataObj["productID"] = prodId;
+                resolve(dataObj);
+                await newPage.close();
+              }
             }
           } else {
-            dataObj["product ID"] = prodId;
+            console.log("undefined");
+            dataObj["productID"] = prodId;
             resolve(dataObj);
             await newPage.close();
           }
@@ -1542,10 +1527,10 @@ const baldorScraperObject = {
         console.log(urls[link]);
         if (urls[link] != null) {
           console.log("got in");
-          console.log(`https://www.baldor.com/catalog/${urls[link]}`);
+          console.log(`https://factorysupplyoutlet.com/dodge-${urls[link]}`);
           let currentPageData = await pagePromise(
-            `https://www.baldor.com/catalog/${urls[link]}`,
-            link
+            `https://factorysupplyoutlet.com/dodge-${urls[link]}`,
+            urls[link]
           );
 
           scrapedData.push(currentPageData);
@@ -1561,4 +1546,4 @@ const baldorScraperObject = {
   },
 };
 
-module.exports = baldorScraperObject;
+module.exports = factorysupplyoutletScraperObject;
