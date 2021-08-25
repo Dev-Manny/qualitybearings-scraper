@@ -1468,7 +1468,7 @@ const factorysupplyoutletScraperObject = {
         new Promise(async (resolve, reject) => {
           let dataObj = {};
           newPage = await browser.newPage();
-          await newPage.goto(link, { waitUntil: "load", timeout: 30000 });
+          await newPage.goto(link, { waitUntil: "load", timeout: 70000 });
           console.log("inside here");
           const [lh] = await newPage.$x(
             '//*[@id="topOfPage"]/div[6]/div[1]/div/main/div[1]/div[1]/div[5]/article/div[1]/div[1]/ul/a/li[3]/div[1]'
