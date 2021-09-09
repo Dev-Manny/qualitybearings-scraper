@@ -1,4 +1,4 @@
-const pageScraper = require("./factorysupplyoutletScraper");
+const pageScraper = require("./skfScraper");
 
 const exportDataToExcel = require("./exportService");
 

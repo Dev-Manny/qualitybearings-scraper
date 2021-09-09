@@ -17,8 +17,13 @@ const exportDataToExcel = (
 ) => {
   const data = jsonData.map((res) => {
     return [
+      res.brand,
       res.productID,
-      res.OutsideDiameter,
+      res.insideDiameter,
+      res.outsideDiameter,
+      res.width,
+      res.cageType,
+      res.clearance,
     ];
   });
   exportExcel(data, workSheetColumnNames, workSheetName, filePath);
