@@ -1,5 +1,5 @@
 const skfScraperObject = {
-  url: "https://www.qualitybearingsonline.com/deep-groove/6200-series/",
+  url: "https://www.qualitybearingsonline.com/deep-groove/6000-series/",
   async scraper(browser) {
     let page = await browser.newPage();
     console.log(`Navigating to ${this.url}...`);
@@ -94,7 +94,7 @@ const skfScraperObject = {
         newPageLink = await newPage.jsonValue();
         console.log(`Next page link is: ${await newPageLink}`);
         nextButtonExist = true;
-        if (await newPageLink === 'https://www.qualitybearingsonline.com/deep-groove/6200-series/?sort=bestselling&page=50'){
+        if (await newPageLink === 'https://www.qualitybearingsonline.com/deep-groove/6000-series/?sort=bestselling&page=3'){
           console.log('End of life');
           nextButtonExist = false;
         }
