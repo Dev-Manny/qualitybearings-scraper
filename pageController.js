@@ -1,8 +1,14 @@
-const pageScraper = require("./skfScraper");
+const pageScraper = require("./baldorScraper");
 
 const exportDataToExcel = require("./exportService");
 
-const workSheetColumnNames = ["Brand", "Product ID", "Inside Diameter", "Outside Diameter", "Width", "Cage Type", "Clearance"];
+const workSheetColumnNames = [
+  "Bore Size",
+  "Casting Material",
+  "Keyway Size",
+  "Product ID",
+  "Bushing Size",
+];
 
 const workSheetName = "Task";
 const filePath = "./exel-from.xlsx";
