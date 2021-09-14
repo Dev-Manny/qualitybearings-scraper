@@ -1,10 +1,17 @@
 const skfScraperObject = {
-  url: "https://www.qualitybearingsonline.com/deep-groove/6000-series/",
+  url: "https://www.qualitybearingsonline.com/skf/deep-groove/16000-series?sort=bestselling&page=2",
   async scraper(browser) {
     let page = await browser.newPage();
+      let scrapedData = [];
     console.log(`Navigating to ${this.url}...`);
-    await page.goto(this.url, { waitUntil: "load", timeout: 70000 });
-    let scrapedData = [];
+    try {
+      await page.goto(this.url, { waitUntil: "load", timeout: 200000 });
+    
+    } catch (error) {
+      let data = await scrapeCurrentPage();
+      console.log(data);
+      return data;
+    }
 
     // Wait for the required DOM to be rendered
     async function scrapeCurrentPage() {
@@ -57,7 +64,17 @@ const skfScraperObject = {
           );
           const widthTxt = await width.getProperty("textContent");
           const cageTypeTxt = await cageType.getProperty("textContent");
-          const clearanceTxt = await clearance.getProperty("textContent");
+       
+
+          if (typeof (await clearance) !== "undefined") {
+            const clearanceTxt = await clearance.getProperty("textContent");
+             dataObj["clearance"] = await clearanceTxt.jsonValue();
+              
+          }else{
+            dataObj["clearance"] = '';
+            //resolve(dataObj);
+            //await newPage.close();
+          }
 
           dataObj["brand"] = await brandSrc.jsonValue();
           dataObj["productID"] = await pidTxt.jsonValue();
@@ -65,8 +82,7 @@ const skfScraperObject = {
           dataObj["outsideDiameter"] = await outsideDiameterTxt.jsonValue();
           dataObj["width"] = await widthTxt.jsonValue();
           dataObj["cageType"] = (await cageTypeTxt.jsonValue()) + " cage";
-          dataObj["clearance"] = await clearanceTxt.jsonValue();
-
+         
           resolve(dataObj);
           await newPage.close();
         });
@@ -86,15 +102,14 @@ const skfScraperObject = {
       let newPageLink;
       try {
         console.log('inside doing');
-        const [nextButton] = await page.$x(
-          "/html/body/div[2]/main/section/div[1]/div[4]/nav/a[8]"
-        );
-       
+        const [nextButton] = await page.$x("/html/body/div[2]/main/section/div[1]/div[4]/nav/a[7]");
+        conosle.log(await nextButton);
         const newPage = await nextButton.getProperty("href");
+        console.log(newPage);
         newPageLink = await newPage.jsonValue();
         console.log(`Next page link is: ${await newPageLink}`);
         nextButtonExist = true;
-        if (await newPageLink === 'https://www.qualitybearingsonline.com/deep-groove/6000-series/?sort=bestselling&page=3'){
+        if (await newPageLink === 'https://www.qualitybearingsonline.com/thrust/single-direction?sort=bestselling&_bc_fsnf=1&brand=2&page=5'){
           console.log('End of life');
           nextButtonExist = false;
         }

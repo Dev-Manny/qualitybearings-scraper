@@ -2,7 +2,7 @@ const pageScraper = require("./skfScraper");
 
 const exportDataToExcel = require("./exportService");
 
-const workSheetColumnNames = ["productID", "OutsideDiameter"];
+const workSheetColumnNames = ["Brand", "Product ID", "Inside Diameter", "Outside Diameter", "Width", "Cage Type", "Clearance"];
 
 const workSheetName = "Task";
 const filePath = "./exel-from.xlsx";
