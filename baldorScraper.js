@@ -481,6 +481,12 @@ const baldorScraperObject = {
                 resolve(dataObj);
                 await newPage.close();
               }
+            }else{
+              console.log("getting into here");
+              dataObj["Product ID"] = prodId;
+              // console.log(dataObj);
+              resolve(dataObj);
+              await newPage.close();
             }
           } else {
             console.log("getting into here");
