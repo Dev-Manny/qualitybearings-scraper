@@ -3,11 +3,12 @@ const pageScraper = require("./baldorScraper");
 const exportDataToExcel = require("./exportService");
 
 const workSheetColumnNames = [
-  "Bore Size",
+  "Bore Size/Inside Diameter",
   "Casting Material",
   "Keyway Size",
   "Product ID",
   "Bushing Size",
+  "Bushing Length/Outside Diameter"
 ];
 
 const workSheetName = "Task";

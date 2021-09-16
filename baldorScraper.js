@@ -289,6 +289,7 @@ const baldorScraperObject = {
                         res === "Bore Size" ||
                         res === "Bushing Size" ||
                         res === "Casting Material" ||
+                        res === "Bushing Length" ||
                         res === "Keyway Size"
                       ) {
                         [value] = await newPage.$x(
@@ -309,6 +310,7 @@ const baldorScraperObject = {
                         res === "Bore Size" ||
                         res === "Bushing Size" ||
                         res === "Casting Material" ||
+                        res === "Bushing Length" ||
                         res === "Keyway Size"
                       ) {
                         // console.log("title is: " + res);
@@ -330,6 +332,7 @@ const baldorScraperObject = {
                         res === "Bore Size" ||
                         res === "Bushing Size" ||
                         res === "Casting Material" ||
+                        res === "Bushing Length" ||
                         res === "Keyway Size"
                       ) {
                         console.log("title is: " + res);
@@ -351,6 +354,7 @@ const baldorScraperObject = {
                         res === "Bore Size" ||
                         res === "Bushing Size" ||
                         res === "Casting Material" ||
+                        res === "Bushing Length" ||
                         res === "Keyway Size"
                       ) {
                         // console.log("title is: " + res);
@@ -390,6 +394,7 @@ const baldorScraperObject = {
                         res === "Bore Size" ||
                         res === "Bushing Size" ||
                         res === "Casting Material" ||
+                        res === "Bushing Length" ||
                         res === "Keyway Size"
                       ) {
                         // console.log("title is: " + res);
@@ -411,6 +416,7 @@ const baldorScraperObject = {
                         res === "Bore Size" ||
                         res === "Bushing Size" ||
                         res === "Casting Material" ||
+                        res === "Bushing Length" ||
                         res === "Keyway Size"
                       ) {
                         console.log("title is: " + res);
@@ -432,6 +438,7 @@ const baldorScraperObject = {
                         res === "Bore Size" ||
                         res === "Bushing Size" ||
                         res === "Casting Material" ||
+                        res === "Bushing Length" ||
                         res === "Keyway Size"
                       ) {
                         // console.log("title is: " + res);
@@ -453,6 +460,7 @@ const baldorScraperObject = {
                         res === "Bore Size" ||
                         res === "Bushing Size" ||
                         res === "Casting Material" ||
+                        res === "Bushing Length" ||
                         res === "Keyway Size"
                       ) {
                         // console.log("title is: " + res);
@@ -481,7 +489,7 @@ const baldorScraperObject = {
                 resolve(dataObj);
                 await newPage.close();
               }
-            }else{
+            } else {
               console.log("getting into here");
               dataObj["Product ID"] = prodId;
               // console.log(dataObj);

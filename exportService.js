@@ -21,7 +21,8 @@ const exportDataToExcel = (
       res["Casting Material"],
       res["Keyway Size"],
       res["Product ID"],
-      res["Bushing Size"]
+      res["Bushing Size"],
+      res["Bushing Length"],
     ];
   });
   exportExcel(data, workSheetColumnNames, workSheetName, filePath);
