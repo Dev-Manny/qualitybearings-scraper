@@ -1,17 +1,32 @@
-const pageScraper = require("./baldorScraper");
+const pageScraper = require("./flowdrillScraper");
 
 const exportDataToExcel = require("./exportService");
 
 const workSheetColumnNames = [
-  "Bore Size/Inside Diameter",
-  "Casting Material",
-  "Keyway Size",
-  "Product ID",
-  "Bushing Size",
-  "Bushing Length/Outside Diameter"
+  "Product Name",
+  "Product SKU",
+  "Product Description",
+  "Product Additional Description",
+  "Diameter",
+  "Article Code",
+  "Thread Type",
+  "Thread Size",
+  "Min Material Thickness",
+  "Max Material Thinckness",
+  "Finishing",
+  "Shaft Diameter",
+  "Work Length",
+  "Material 1",
+  "Spindle Speed",
+  "Feed",
+  "Power",
+  "Material 2",
+  "Spindle Speed 2",
+  "Feed 2",
+  "Power 2"
 ];
 
-const workSheetName = "Task";
+const workSheetName = "File";
 const filePath = "./exel-from.xlsx";
 
 async function scrapeAll(browserInstance) {

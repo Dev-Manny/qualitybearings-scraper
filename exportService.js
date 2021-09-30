@@ -17,12 +17,28 @@ const exportDataToExcel = (
 ) => {
   const data = jsonData.map((res) => {
     return [
-      res["Bore Size"],
-      res["Casting Material"],
-      res["Keyway Size"],
-      res["Product ID"],
-      res["Bushing Size"],
-      res["Bushing Length"],
+      
+      res["productName"],
+      res["productSku"],
+      res["productDescription"],
+      res["productAdditionalDescription"],
+      res["diameter"],
+      res["articleCode"],
+      res["threadType"],
+      res["threadSize"],
+      res["minMaterialThickness"],
+      res["maxMaterialThickness"],
+      res["finishing"],
+      res["shaftDiameter"],
+      res["workLength"],
+      res["material1"],
+      res["spindleSpeed"],
+      res["feed"],
+      res["power"],
+      res["material2"],
+      res["spindleSpeed2"],
+      res["feed2"],
+      res["power2"],
     ];
   });
   exportExcel(data, workSheetColumnNames, workSheetName, filePath);
