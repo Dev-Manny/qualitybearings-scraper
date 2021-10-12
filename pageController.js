@@ -1,29 +1,29 @@
-const pageScraper = require("./flowdrillScraper");
+const pageScraper = require("./dodgeScraper");
 
 const exportDataToExcel = require("./exportService");
 
 const workSheetColumnNames = [
-  "Product Name",
-  "Product SKU",
-  "Product Description",
-  "Product Additional Description",
-  "Diameter",
-  "Article Code",
-  "Thread Type",
-  "Thread Size",
-  "Min Material Thickness",
-  "Max Material Thinckness",
-  "Finishing",
-  "Shaft Diameter",
-  "Work Length",
-  "Material 1",
-  "Spindle Speed",
-  "Feed",
-  "Power",
-  "Material 2",
-  "Spindle Speed 2",
-  "Feed 2",
-  "Power 2"
+  'Product ID',
+  'Bearing Type',
+  'Shaft Attachment',
+  'Housing Construction',
+  'Insert Material',
+  'Expansion Capability',
+  'Housing Dimensional Standard',
+  'Sensor Ready',
+  'Suitable for Washdown Environment',
+  'Housing Type',
+  'Sealing Type',
+  'Relubricatable',
+  'Lubrication',
+  'Grease Name',
+  'Suitable for High Temperature Application',
+  'Dynamic Load Capacity',
+  'Maximum Speed',
+  'Static Load Capacity',
+  'Shaft Diameter',
+  'Bore Length',
+  'Insert Outer Diameter'
 ];
 
 const workSheetName = "File";
