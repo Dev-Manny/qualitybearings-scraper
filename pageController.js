@@ -1,17 +1,32 @@
-const pageScraper = require("./abbScraper");
+const pageScraper = require("./dodgeScraper");
 
 const exportDataToExcel = require("./exportService");
 
 const workSheetColumnNames = [
-  "Bore Size/Inside Diameter",
-  "Casting Material",
-  "Keyway Size",
-  "Product ID",
-  "Bushing Size",
-  "Bushing Length/Outside Diameter"
+  'Product ID',
+  'Bearing Type',
+  'Shaft Attachment',
+  'Housing Construction',
+  'Insert Material',
+  'Expansion Capability',
+  'Housing Dimensional Standard',
+  'Sensor Ready',
+  'Suitable for Washdown Environment',
+  'Housing Type',
+  'Sealing Type',
+  'Relubricatable',
+  'Lubrication',
+  'Grease Name',
+  'Suitable for High Temperature Application',
+  'Dynamic Load Capacity',
+  'Maximum Speed',
+  'Static Load Capacity',
+  'Shaft Diameter',
+  'Bore Length',
+  'Insert Outer Diameter'
 ];
 
-const workSheetName = "Task";
+const workSheetName = "File";
 const filePath = "./exel-from.xlsx";
 
 async function scrapeAll(browserInstance) {

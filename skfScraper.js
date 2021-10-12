@@ -2,11 +2,11 @@ const skfScraperObject = {
   url: "https://www.qualitybearingsonline.com/skf/deep-groove/16000-series?sort=bestselling&page=2",
   async scraper(browser) {
     let page = await browser.newPage();
-      let scrapedData = [];
+    let scrapedData = [];
     console.log(`Navigating to ${this.url}...`);
     try {
       await page.goto(this.url, { waitUntil: "load", timeout: 200000 });
-    
+
     } catch (error) {
       let data = await scrapeCurrentPage();
       console.log(data);
@@ -64,13 +64,13 @@ const skfScraperObject = {
           );
           const widthTxt = await width.getProperty("textContent");
           const cageTypeTxt = await cageType.getProperty("textContent");
-       
+
 
           if (typeof (await clearance) !== "undefined") {
             const clearanceTxt = await clearance.getProperty("textContent");
-             dataObj["clearance"] = await clearanceTxt.jsonValue();
-              
-          }else{
+            dataObj["clearance"] = await clearanceTxt.jsonValue();
+
+          } else {
             dataObj["clearance"] = '';
             //resolve(dataObj);
             //await newPage.close();
@@ -82,7 +82,7 @@ const skfScraperObject = {
           dataObj["outsideDiameter"] = await outsideDiameterTxt.jsonValue();
           dataObj["width"] = await widthTxt.jsonValue();
           dataObj["cageType"] = (await cageTypeTxt.jsonValue()) + " cage";
-         
+
           resolve(dataObj);
           await newPage.close();
         });
@@ -109,11 +109,11 @@ const skfScraperObject = {
         newPageLink = await newPage.jsonValue();
         console.log(`Next page link is: ${await newPageLink}`);
         nextButtonExist = true;
-        if (await newPageLink === 'https://www.qualitybearingsonline.com/thrust/single-direction?sort=bestselling&_bc_fsnf=1&brand=2&page=5'){
+        if (await newPageLink === 'https://www.qualitybearingsonline.com/thrust/single-direction?sort=bestselling&_bc_fsnf=1&brand=2&page=5') {
           console.log('End of life');
           nextButtonExist = false;
         }
-  
+
       } catch (e) {
         nextButtonExist = false;
       }
