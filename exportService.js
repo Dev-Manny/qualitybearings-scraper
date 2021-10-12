@@ -36,6 +36,7 @@ const exportDataToExcel = (
       res["Maximum Speed"],
       res["Static Load Capacity"],
       res["Shaft Diameter"],
+      res["Standoff Included"],
       res["Bore Length"],
       res["Insert Outer Diameter"],
     ];

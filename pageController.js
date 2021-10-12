@@ -22,8 +22,9 @@ const workSheetColumnNames = [
   'Maximum Speed',
   'Static Load Capacity',
   'Shaft Diameter',
+  'Standoff Included',
   'Bore Length',
-  'Insert Outer Diameter'
+  'Insert Outer Diameter',
 ];
 
 const workSheetName = "File";
