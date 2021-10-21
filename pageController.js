@@ -1,30 +1,36 @@
-const pageScraper = require("./dodgeScraper");
+const pageScraper = require("./aimScraper");
 
 const exportDataToExcel = require("./exportService");
 
 const workSheetColumnNames = [
   'Product ID',
-  'Bearing Type',
-  'Shaft Attachment',
-  'Housing Construction',
-  'Insert Material',
-  'Expansion Capability',
-  'Housing Dimensional Standard',
-  'Sensor Ready',
-  'Suitable for Washdown Environment',
-  'Housing Type',
-  'Sealing Type',
-  'Relubricatable',
-  'Lubrication',
-  'Grease Name',
-  'Suitable for High Temperature Application',
-  'Dynamic Load Capacity',
-  'Maximum Speed',
-  'Static Load Capacity',
   'Shaft Diameter',
-  'Standoff Included',
-  'Bore Length',
-  'Insert Outer Diameter',
+  'Dynamic Load Rating',
+  'Static Load Rating',
+  'Weight',
+  'D',
+  'U',
+  'B',
+  'C',
+  'L',
+  'Bi',
+  'Be',
+  'r',
+  'R',
+  'n',
+  'N',
+  'm',
+  'M',
+  'G',
+  'Z',
+  'O',
+  'T',
+  'YMax',
+  'Y',
+  'W',
+  'J',
+  'K',
+  'ds'
 ];
 
 const workSheetName = "File";
