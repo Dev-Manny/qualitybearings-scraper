@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const aimScraperObject = {
     async scraper(browser) {
         let scrapedData = [];
@@ -1209,7 +1211,14 @@ const aimScraperObject = {
             return scrapedData;
         }
         let data = await scrapeCurrentPage();
-        console.log(data);
+        fs.writeFile("output.json", JSON.stringify(data), 'utf8', function (err) {
+            if (err) {
+                console.log("An error occured while writing JSON Object to File.");
+                return console.log(err);
+            }
+
+            console.log("JSON file has been saved.");
+        });
         return data;
     },
 };
