@@ -25,12 +25,15 @@ const workSheetColumnNames = [
   'Z',
   'O',
   'T',
-  'YMax',
+  'Y Max',
   'Y',
   'W',
+  'an',
+  'A',
   'J',
   'K',
-  'ds'
+  'ds',
+  'o'
 ];
 
 const workSheetName = "File";

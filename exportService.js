@@ -39,12 +39,15 @@ const exportDataToExcel = (
       res["Z"],
       res["O"],
       res["T"],
-      res["YMax"],
+      res["Y Max"],
       res["Y"],
       res["W"],
+      res["an"],
+      res["A"],
       res["J"],
       res["K"],
       res["ds"],
+      res["o"]
     ];
   });
   exportExcel(data, workSheetColumnNames, workSheetName, filePath);
