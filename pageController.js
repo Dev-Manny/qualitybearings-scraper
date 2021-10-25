@@ -1,4 +1,4 @@
-const pageScraper = require("./aimScraper");
+const pageScraper = require("./aimBearingScraper");
 
 const exportDataToExcel = require("./exportService");
 

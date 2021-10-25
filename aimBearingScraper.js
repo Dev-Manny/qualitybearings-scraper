@@ -55,8 +55,7 @@ const aimScraperObject = {
         async function scrapeCurrentPage() {
             //Loop through each of those links, open a new page instance and get the relevant data from them
             let urls = [
-                "UE204",
-                "UCX06",
+                "UR208",
             ];
 
             let pagePromise = (link, prodId) =>
@@ -67,13 +66,13 @@ const aimScraperObject = {
 
                     await newPage.goto(link, { waitUntil: "load", timeout: 100000 });
 
-                    await newPage.waitForSelector('input[name=keyword]');
+                    // await newPage.waitForSelector('input[name=keyword]');
 
-                    await newPage.$eval('input[name=keyword]', (el, b) => { el.value = b }, prodId);
+                    // await newPage.$eval('input[name=keyword]', (el, b) => { el.value = b }, prodId);
 
 
-                    await newPage.click('input[name="search_btn"]');
-                    await newPage.waitForSelector('#plp-container');
+                    // await newPage.click('input[name="search_btn"]');
+                    // await newPage.waitForSelector('#plp-container');
 
                     const [table] = await newPage.$x(
                         `//*[@id="plp-item-page-specs"]/div[4]/div[1]/div/table/tbody`
@@ -173,8 +172,8 @@ const aimScraperObject = {
                 console.log(urls[link]);
                 if (urls[link] != null) {
                     let currentPageData = await pagePromise(
-                        `https://catalog.amibearings.com/`,
-                        urls[link]
+                        `https://catalog.amibearings.com/item/al-o-d-normal-duty-eccentric-collar-bearing-insert/entric-collar-locking-bearing-insert-khr200-series/khr209`,
+                        'khr209'
                     );
 
                     scrapedData.push(currentPageData);
