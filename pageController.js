@@ -1,39 +1,18 @@
-const pageScraper = require("./aimBearingScraper");
+const pageScraper = require("./flowdrillListScraper");
 
 const exportDataToExcel = require("./exportService");
 
 const workSheetColumnNames = [
-  'Product ID',
-  'Shaft Diameter',
-  'Dynamic Load Rating',
-  'Static Load Rating',
-  'Weight',
-  'D',
-  'U',
-  'B',
-  'C',
-  'L',
-  'Bi',
-  'Be',
-  'r',
-  'R',
-  'n',
-  'N',
-  'm',
-  'M',
-  'G',
-  'Z',
-  'O',
-  'T',
-  'Y Max',
-  'Y',
-  'W',
-  'an',
-  'A',
-  'J',
-  'K',
-  'ds',
-  'o'
+  'description',
+  'additional_description',
+  'Name',
+  'Article code',
+  'Thread type',
+  'Thread size',
+  'Diameter',
+  'Pitch',
+  'Shank Diameter',
+  'Square diameter',
 ];
 
 const workSheetName = "File";
