@@ -1,6 +1,6 @@
 const pageScraper = require("./flowdrillListScraper");
 
-const exportDataToExcel = require("./exportService");
+const exportDataToExcel = require("../services/exportService");
 
 const workSheetColumnNames = [
   'description',

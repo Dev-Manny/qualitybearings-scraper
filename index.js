@@ -1,5 +1,5 @@
-const browserObject = require("./browser");
-const scraperController = require("./pageController");
+const browserObject = require('./browser');
+const scraperController = require('./src/controller/metabo_controller');
 
 // Start the browser and create a browser instance
 let browserInstance = browserObject.startBrowser();

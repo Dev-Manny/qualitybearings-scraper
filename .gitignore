@@ -1,3 +1,2 @@
 /node_modules
-/exel-from.xlsx
-/output.json
+/src/output/
