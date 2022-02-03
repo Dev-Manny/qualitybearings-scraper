@@ -1,6 +1,7 @@
 const royalScraperObject = {
   async scraper(browser) {
     let scrapedData = [];
+    let newProdID;
     let newPage = await browser.newPage();
 
     async function scrapeCurrentPage() {
@@ -16,7 +17,7 @@ const royalScraperObject = {
           await newPage.goto(link, { waitUntil: 'load', timeout: 50000 });
 
           if(prodId.length === 8) {
-             prodId = prodId.substr(0, 4) + "-" + prodId.substr(4, 6)
+             newProdID = prodId.substr(0, 4) + "-" + prodId.substr(4, 6)
           }
 
           await newPage.waitForSelector('input[id=pcHSearch]');
@@ -26,7 +27,7 @@ const royalScraperObject = {
             (el, b) => {
               el.value = b;
             },
-            prodId
+            newProdID
           );
 
           await newPage.click('input[id="pcHSearchSubmit"]');
