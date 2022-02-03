@@ -5,18 +5,7 @@ const royalScraperObject = {
 
     async function scrapeCurrentPage() {
       let catalogs = [
-        '79630024',
-        '79630018',
-        '79630017',
-        '79630016',
-        '79630010',
-        '79630009',
-        '79630008',
-        '79620057',
-        '79620056',
-        '79620049',
-        '79620048',
-        '79620042',
+       "92742160",
       ];
 
       let pagePromise = (link, prodId) =>
@@ -25,6 +14,10 @@ const royalScraperObject = {
           let image = '';
 
           await newPage.goto(link, { waitUntil: 'load', timeout: 50000 });
+
+          if(prodId.length === 8) {
+             prodId = prodId.substr(0, 4) + "-" + prodId.substr(4, 6)
+          }
 
           await newPage.waitForSelector('input[id=pcHSearch]');
 

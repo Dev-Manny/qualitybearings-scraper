@@ -1,5 +1,5 @@
 const browserObject = require('./browser');
-const scraperController = require('./src/controller/texasBeltingController');
+const scraperController = require('./src/controller/royal_controller');
 
 // Start the browser and create a browser instance
 let browserInstance = browserObject.startBrowser();
