@@ -5,12 +5,7 @@ const texasBeltingScraperObject = {
 
     async function scrapeCurrentPage() {
       let catalogs = [
-        '712900745',
-        '95790035',
-        '1610-14M-40',
-        '27230',
-        // '79630016',
-        // '79630010',
+        "78690319",
       ];
 
       let pagePromise = (link, prodId) =>

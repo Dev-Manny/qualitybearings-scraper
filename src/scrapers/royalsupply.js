@@ -16,8 +16,8 @@ const royalScraperObject = {
 
           await newPage.goto(link, { waitUntil: 'load', timeout: 50000 });
 
-          if(prodId.length === 8) {
-             newProdID = prodId.substr(0, 4) + "-" + prodId.substr(4, 6)
+          if (prodId.length === 8) {
+            newProdID = prodId.substr(0, 4) + '-' + prodId.substr(4, 6);
           }
 
           await newPage.waitForSelector('input[id=pcHSearch]');

@@ -1,4 +1,4 @@
-const pageScraper = require('../scrapers/aimScraper');
+const pageScraper = require('../scrapers/aimBearingScraper');
 
 const exportDataToCSV = require('../services/export_service');
 
