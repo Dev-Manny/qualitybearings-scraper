@@ -12,19 +12,45 @@ const santaClaraScraperObject = {
       let pagePromise = (link, prodId) =>
         new Promise(async (resolve, reject) => {
           let dataObj = {};
-          let description = '';
 
           // waits for the link to be opened
           await newPage.goto(link, { waitUntil: 'load', timeout: 50000 });
 
-          await newPage.waitForSelector('#products-view');
+          await newPage.waitForXPath(
+            '//*[@id="catalog-hits"]/div/div[3]/div/a'
+          );
 
-          let q =
-            '#catalog-hits > div > div.col-xs-8.col-md-4.col-lg-3 > div > a';
+          let [prodLink] = await newPage.$x(
+            '//*[@id="catalog-hits"]/div/div[3]/div/a'
+          );
 
-          await newPage.click(q);
+          prodLink = await prodLink.getProperty('href');
 
-          console.log('here', await hey);
+          prodLink = await prodLink.jsonValue();
+
+          await newPage.goto(prodLink, { waitUntil: 'load', timeout: 50000 });
+
+          let [chkProd] = await newPage.$x(
+            '//*[@id="catalog"]/div/div[3]/div[2]/div[3]/div[2]/h1'
+          );
+          chkProd = await chkProd.getProperty('textContent');
+          chkProd = await chkProd.jsonValue();
+
+          if (prodId !== chkProd) {
+            dataObj['product_id'] = prodId;
+            dataObj['description'] = '';
+            resolve(dataObj);
+            return;
+          }
+
+          let [description] = await newPage.$x(
+            '//*[@id="catalog"]/div/div[3]/div[2]/div[4]/div[1]/div[1]/div/div/div[1]/ul/li/span'
+          );
+          description = await description.getProperty('textContent');
+          description = await description.jsonValue();
+
+          dataObj['product_id'] = prodId;
+          dataObj['description'] = description;
 
           resolve(dataObj);
           // await newPage.close();
