@@ -47,6 +47,13 @@ const santaClaraScraperObject = {
           let [description] = await newPage.$x(
             '//*[@id="catalog"]/div/div[3]/div[2]/div[4]/div[1]/div[1]/div/div/div[1]/ul/li/span'
           );
+
+          if (typeof (await description) === 'undefined') {
+            dataObj['product_id'] = prodId;
+            dataObj['description'] = '';
+            resolve(dataObj);
+            return;
+          }
           description = await description.getProperty('textContent');
           description = await description.jsonValue();
 
