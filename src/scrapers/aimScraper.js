@@ -1,6 +1,3 @@
-const fs = require('fs');
-const { parse } = require('csv-parse');
-
 const scrap = async (newPage, table, dimension, dataObj, prodId) => {
   const tableSpec = await table.getProperty('children');
   const specLength = await (await tableSpec.getProperty('length')).jsonValue();
@@ -191,40 +188,6 @@ const aimScraperObject = {
       await newPage.close();
       return scrapedData;
     }
-    let urls = [];
-    let data;
-    var parser = parse({ columns: true }, function (err, records) {
-      console.log(records);
-    });
-    console.log('parser', parser);
-
-    fs.createReadStream(__dirname + '/aim.csv')
-      .pipe(parser)
-      .on('data', function (row) {
-        console.log('i am', row);
-      })
-      .on('end', function () {
-        console.table('users');
-        // TODO: SAVE users data to another file
-        data = scrapeCurrentPage();
-
-        fs.writeFile(
-          'output.json',
-          JSON.stringify(data),
-          'utf8',
-          function (err) {
-            if (err) {
-              console.log(
-                'An error occured while writing JSON Object to File.'
-              );
-              return console.log(err);
-            }
-
-            console.log('JSON file has been saved.');
-          }
-        );
-        return data;
-      });
   },
 };
 

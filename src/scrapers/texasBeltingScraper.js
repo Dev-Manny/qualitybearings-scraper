@@ -1,17 +1,16 @@
+const csvToArray = require('../services/csv_array');
+
 const texasBeltingScraperObject = {
   async scraper(browser) {
     let scrapedData = [];
     let newPage = await browser.newPage();
 
     async function scrapeCurrentPage() {
-      let catalogs = [
-        "78690319",
-      ];
+      const catalogs = await csvToArray('Gates Rubber Image');
 
       let pagePromise = (link, prodId) =>
         new Promise(async (resolve, reject) => {
           let dataObj = {};
-          let image = '';
 
           await newPage.goto(link, { waitUntil: 'load', timeout: 50000 });
 

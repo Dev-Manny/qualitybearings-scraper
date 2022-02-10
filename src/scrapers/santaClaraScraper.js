@@ -1,3 +1,4 @@
+const csvToArray = require('../services/csv_array');
 const santaClaraScraperObject = {
   async scraper(browser) {
     //stores all scrapped data
@@ -7,7 +8,7 @@ const santaClaraScraperObject = {
     let newPage = await browser.newPage();
 
     async function scrapeCurrentPage() {
-      let catalogs = ['100-3101', '100-3103', '100-3104'];
+      const catalogs = await csvToArray('aim');
 
       let pagePromise = (link, prodId) =>
         new Promise(async (resolve, reject) => {
