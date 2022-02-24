@@ -6,15 +6,8 @@ const motorsControlScraperObject = {
     let newPage = await browser.newPage();
 
     async function scrapeCurrentPage() {
-      //const catalogs = await csvToArray('StearnsOne');
-      let catalogs = [
-        '105603200 QF',
-        'ZE3K',
-        'BRD-910',
-        'ZE6210XK-RS',
-        'DC9551920',
-        '105631100 NF',
-      ];
+      const catalogs = await csvToArray('StearnsSix');
+      //let catalogs = [];
 
       let pagePromise = (link, prodId) =>
         new Promise(async (resolve, reject) => {
