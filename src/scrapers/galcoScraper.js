@@ -1,13 +1,12 @@
 const csvToArray = require('../services/csv_array');
 
-const motorsControlScraperObject = {
+const galcoScraperObject = {
   async scraper(browser) {
     let scrapedData = [];
     let newPage = await browser.newPage();
 
     async function scrapeCurrentPage() {
-      const catalogs = await csvToArray('Stearns13');
-      //let catalogs = [];
+      const catalogs = await csvToArray('galco1');
 
       let pagePromise = (link, prodId) =>
         new Promise(async (resolve, reject) => {
@@ -15,26 +14,26 @@ const motorsControlScraperObject = {
 
           await newPage.goto(link, { waitUntil: 'load', timeout: 70000 });
 
-          await newPage.waitForSelector('#maincontent');
+          await newPage.waitForSelector('#shop');
 
-          let [checkProd] = await newPage.$x(
-            '//*[@id="maincontent"]/div[3]/div[1]/div[3]/ol/li/div/div[2]/div[1]/div[1]/div/span[4]'
-          );
+          let [numProd] = await newPage.$x('//*[@id="partdiv1"]/div[2]');
 
-          if (typeof (await checkProd) === 'undefined') {
+          if (typeof (await numProd) === 'undefined') {
             dataObj['product_id'] = prodId;
             dataObj['image'] = '';
             resolve(dataObj);
             return;
           }
+
+          let [checkProd] = await newPage.$x(
+            '//*[@id="partdiv1"]/div[2]/div[2]/div[2]/div[1]/div[2]/div/span[2]/a'
+          );
+
           checkProd = await checkProd.getProperty('textContent');
           checkProd = await checkProd.jsonValue();
 
           let newCheckProd = checkProd.replace(/[^A-Z0-9]/gi, '');
           let newProdId = prodId.replace(/[^A-Z0-9]/gi, '');
-
-          console.log(newCheckProd);
-          console.log(newProdId);
 
           if (!newCheckProd.includes(newProdId)) {
             dataObj['product_id'] = prodId;
@@ -44,14 +43,14 @@ const motorsControlScraperObject = {
           }
 
           let [prodImage] = await newPage.$x(
-            '//*[@id="maincontent"]/div[3]/div[1]/div[3]/ol/li/div/div[1]/a/img'
+            '//*[@id="partdiv1"]/div[2]/div[1]/div[1]/a/img'
           );
           prodImage = await prodImage.getProperty('src');
           prodImage = await prodImage.jsonValue();
 
+          console.log(prodImage);
           if (
-            prodImage ===
-            'https://motorsandcontrol.com/media/catalog/product/cache/f6b4c66cd38827c69071dcda4f9968da/s/t/stearns_brake_logo_2019.jpg'
+            prodImage === 'https://www.galco.com/images/catalog/picture-na.jpg'
           ) {
             prodImage = '';
           }
@@ -65,7 +64,7 @@ const motorsControlScraperObject = {
       for (id in catalogs) {
         if (catalogs[id] != null) {
           let currentPageData = await pagePromise(
-            `https://motorsandcontrol.com/catalogsearch/result/?q=${catalogs[id]}`,
+            `https://www.galco.com/scripts/cgiip.exe/wa/wcat/catalog.htm?searchbox=${catalogs[id]}`,
             catalogs[id]
           );
           console.log(id, ' got', catalogs[id]);
@@ -82,4 +81,4 @@ const motorsControlScraperObject = {
   },
 };
 
-module.exports = motorsControlScraperObject;
+module.exports = galcoScraperObject;
