@@ -9,7 +9,7 @@ const texasBeltingScraperObject = {
       const catalogs = await csvToArray('FAG Bearing');
 
       // let catalogs = [
-      //   //'3202.2RS',
+      //   '3202.2RS',
       //   '6206-C-2HRS-L038',
       //   'NU2248MA',
       //   '6311-TB-P6-C3',
@@ -123,8 +123,10 @@ const texasBeltingScraperObject = {
           dataObj['product_id'] = prodId;
           dataObj['image'] = image;
 
+          console.log('to the end');
           resolve(dataObj);
           await newPage.close();
+          return;
         });
 
       for (id in catalogs) {
@@ -136,9 +138,9 @@ const texasBeltingScraperObject = {
           );
           console.log(id, ' got', catalogs[id]);
           scrapedData.push(currentPageData);
+          await newPage.close();
         }
       }
-      await newPage.close();
       return scrapedData;
     }
 
