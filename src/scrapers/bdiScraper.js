@@ -28,6 +28,12 @@ const texasBeltingScraperObject = {
           await newPage.waitForSelector('#main', { timeout: 500000 });
 
           let [checkProd] = await newPage.$x('//*[@id="PLP_PartNumber1"]');
+          if (typeof (await checkProd) === 'undefined') {
+            dataObj['product_id'] = prodId;
+            dataObj['image'] = '';
+            resolve(dataObj);
+            return;
+          }
           checkProd = await checkProd.getProperty('textContent');
           checkProd = (await checkProd.jsonValue()).trim();
           console.log('check proud', checkProd);
