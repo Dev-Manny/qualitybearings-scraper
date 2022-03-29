@@ -92,6 +92,12 @@ const texasBeltingScraperObject = {
               let [prodImage] = await newPage.$x(
                 '//*[@id="primary-image-link"]/img'
               );
+              if (typeof (await prodImage) === 'undefined') {
+                dataObj['product_id'] = prodId;
+                dataObj['image'] = '';
+                resolve(dataObj);
+                return;
+              }
 
               prodImage = await prodImage.getProperty('src');
               if (typeof (await prodImage) === 'undefined') {
