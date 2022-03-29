@@ -78,10 +78,9 @@ const texasBeltingScraperObject = {
                 return;
               }
 
+              let z = `//*[@id="PLP_Product_Name${i}"]/a`;
               // move to a new page
-              let [newLink] = await newPage.$x(
-                '//*[@id="PLP_Product_Name1"]/a'
-              );
+              let [newLink] = await newPage.$x(z);
               newLink = await newLink.getProperty('href');
               newLink = await newLink.jsonValue();
 
@@ -95,6 +94,12 @@ const texasBeltingScraperObject = {
               );
 
               prodImage = await prodImage.getProperty('src');
+              if (typeof (await prodImage) === 'undefined') {
+                dataObj['product_id'] = prodId;
+                dataObj['image'] = '';
+                resolve(dataObj);
+                return;
+              }
               image = await prodImage.jsonValue();
 
               if (
