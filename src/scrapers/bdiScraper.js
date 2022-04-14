@@ -86,7 +86,10 @@ const texasBeltingScraperObject = {
 
               console.log(newLink);
 
-              await newPage.goto(newLink);
+              await newPage.goto(newLink, {
+                waitUntil: 'load',
+                timeout: 50000,
+              });
 
               console.log('new page comings');
               let [prodImage] = await newPage.$x(

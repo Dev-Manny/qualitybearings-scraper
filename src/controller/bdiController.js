@@ -2,7 +2,7 @@ const pageScraper = require('../scrapers/bdiScraper');
 
 const exportDataToCSV = require('../services/export_service');
 
-const filePath = './src/output/bdi.csv';
+const filePath = './src/output/fagbearing.csv';
 
 async function scrapeAll(browserInstance) {
   try {
