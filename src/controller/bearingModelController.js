@@ -1,8 +1,8 @@
-const pageScraper = require('../scrapers/motorsControlScraper');
+const pageScraper = require('../scrapers/bearingModelScraper');
 
 const exportDataToCSV = require('../services/export_service');
 
-const filePath = './src/output/electragrove.csv';
+const filePath = './src/output/bearingModel.csv';
 
 async function scrapeAll(browserInstance) {
   try {

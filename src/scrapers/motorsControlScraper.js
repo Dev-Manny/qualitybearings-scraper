@@ -6,7 +6,7 @@ const motorsControlScraperObject = {
     let newPage = await browser.newPage();
 
     async function scrapeCurrentPage() {
-      const catalogs = await csvToArray('Stearns13');
+      const catalogs = await csvToArray('Electra Grove Gear');
       //let catalogs = [];
 
       let pagePromise = (link, prodId) =>
