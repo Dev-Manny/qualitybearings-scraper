@@ -71,6 +71,12 @@ const hubellScraperObject = {
                   let [prodImage] = await newPage.$x(
                     '//*[@id="big-image"]/img[2]'
                   );
+                  if (typeof (await prodImage) === 'undefined') {
+                    dataObj['product_id'] = prodId;
+                    dataObj['image'] = '';
+                    resolve(dataObj);
+                    return;
+                  }
                   prodImage = await prodImage.getProperty('src');
                   prodImage = await prodImage.jsonValue();
 
