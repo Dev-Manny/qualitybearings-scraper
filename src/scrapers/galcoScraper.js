@@ -6,7 +6,7 @@ const galcoScraperObject = {
     let newPage = await browser.newPage();
 
     async function scrapeCurrentPage() {
-      const catalogs = await csvToArray('galco1');
+      const catalogs = await csvToArray('galco');
 
       let pagePromise = (link, prodId) =>
         new Promise(async (resolve, reject) => {
