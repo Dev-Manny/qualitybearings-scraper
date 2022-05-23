@@ -6,7 +6,7 @@ const hubellScraperObject = {
     let newPage = await browser.newPage();
 
     async function scrapeCurrentPage() {
-      const catalogs = await csvToArray('Hubbell Wiring image');
+      const catalogs = await csvToArray('gordon');
 
       let pagePromise = (link, prodId) =>
         new Promise(async (resolve, reject) => {
